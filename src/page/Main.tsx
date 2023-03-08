@@ -5,19 +5,20 @@ import Contact from "./Contact";
 import Artwork from "./Artwork";
 import tw from "tailwind-styled-components";
 import { useRef } from "react";
+import React from "react";
 
 const Main = () => {
   const infoRef = useRef(null);
   const artworkRef = useRef(null);
   const contactRef = useRef(null);
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLImageElement>(null);
 
-  const scrollToSection = (ref) => {
-    const headerHeight = headerRef.current.offsetHeight;
-    const sectionTop = ref.current.offsetTop - headerHeight;
+  const scrollToSection = (ref: React.RefObject<HTMLImageElement>) => {
+    const headerHeight = headerRef.current?.offsetHeight || 0;
+    const sectionTop = ref.current?.offsetTop || 0;
 
     window.scrollTo({
-      top: sectionTop,
+      top: sectionTop - headerHeight,
       behavior: "smooth",
     });
   };

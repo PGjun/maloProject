@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 
 //router
-import Main from "./page/Main";
+import Main from "./page/Main.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(<Route path="/" element={<Main />}></Route>)
