@@ -1,3 +1,4 @@
+import React from "react";
 import titleimg from "../img/maloLogo1.png";
 import footerimg from "../img/maloLogo2.png";
 import Info from "./Info";
@@ -5,7 +6,6 @@ import Contact from "./Contact";
 import Artwork from "./Artwork";
 import tw from "tailwind-styled-components";
 import { useRef } from "react";
-import React from "react";
 
 const Main = () => {
   const infoRef = useRef(null);
@@ -65,7 +65,7 @@ const Main = () => {
         </section>
       </Centerdiv>
 
-      <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-44 bg-gradient-to-t from-white via-white to-transparent">
+      <footer className="fixed bottom-0 left-0 right-0 flex justify-center">
         <div className="flex flex-col items-center mt-20">
           <img src={footerimg} alt="footerimg" className="w-14" />
           <p className="text-gray-600 text-sm mb-2">

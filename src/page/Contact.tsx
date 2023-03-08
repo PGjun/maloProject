@@ -1,10 +1,11 @@
+import React from "react";
 import { useState } from "react";
 
 const Contact = () => {
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSendEmail = (e) => {
+  const handleSendEmail = (e: any) => {
     e.preventDefault();
     window.open(
       `mailto:pgj127@gmail.com?subject=Email from ${email}&body=${content}`

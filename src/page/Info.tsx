@@ -1,3 +1,4 @@
+import React from "react";
 import infoimg from "../img/infoImg.png";
 
 const Info = () => {
