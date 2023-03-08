@@ -27,7 +27,7 @@ const Main = () => {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 right-0 flex flex-col items-center justify-center  pt-10 pb-10 bg-gradient-to-b from-white via-white to-transparent"
+        className="fixed z-10 top-0 left-0 right-0 flex flex-col items-center justify-center  pt-10 pb-10 bg-gradient-to-b from-white via-white to-transparent"
       >
         <button onClick={() => scrollToSection(headerRef)}>
           <img src={titleimg} alt="titelimg" ref={headerRef} />

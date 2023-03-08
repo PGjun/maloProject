@@ -1,28 +1,38 @@
-import React from "react";
-import artworkimg1 from "../img/maloImg1.jpg";
-// import tw from "tailwind-styled-components";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-class imgclass {
-  className = "h-52 w-52";
+interface Image {
+  id: number;
+  url: string;
+  info: string;
 }
 
 const Artwork = () => {
-  const imgtw = new imgclass();
+  const [images, setImages] = useState<Image[]>([]);
+
+  useEffect(() => {
+    async function fetchImages() {
+      const response = await axios.get<Image[]>("json/dummy.json");
+      setImages(response.data);
+      console.log(response.data);
+    }
+    fetchImages();
+  }, []);
   return (
     <>
       <div className="grid grid-cols-3 gap-16">
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
-        <img src={artworkimg1} alt="artworkimg1" className={imgtw.className} />
+        {images.map((image) => (
+          <div key={image.id} className="relative">
+            <img
+              src={image.url}
+              alt={`Artwork ${image.id}`}
+              className="h-52 w-72 drop-shadow-xl"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 opacity-0 hover:opacity-100 transition duration-500">
+              <p className="text-black text-center">{image.info}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
