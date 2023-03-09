@@ -9,17 +9,58 @@ interface Image {
 
 const Artwork = () => {
   const [images, setImages] = useState<Image[]>([]);
+  const [selectedYear, setSelectedYear] = useState<number>(2022);
 
   useEffect(() => {
     async function fetchImages() {
-      const response = await axios.get<Image[]>("json/dummy.json");
-      setImages(response.data);
-      console.log(response.data);
+      if (selectedYear !== null) {
+        const response = await axios.get<Image[]>(`json/${selectedYear}.json`);
+        setImages(response.data);
+        console.log(response.data);
+      }
     }
     fetchImages();
-  }, []);
+  }, [selectedYear]);
+
+  const handleButtonClick = (year: number) => {
+    setSelectedYear(year);
+  };
+
   return (
     <>
+      <div className="flex justify-center space-x-4 mb-8">
+        <button
+          className={
+            selectedYear === 2022
+              ? "text-gray-300 text-sm"
+              : "text-sm hover:font-bold"
+          }
+          onClick={() => handleButtonClick(2022)}
+        >
+          2022
+        </button>
+        <button
+          className={
+            selectedYear === 2021
+              ? "text-gray-300 bold text-sm"
+              : "text-sm hover:font-bold"
+          }
+          onClick={() => handleButtonClick(2021)}
+        >
+          2021
+        </button>
+        <button
+          className={
+            selectedYear === 2020
+              ? "text-gray-300 bold text-sm"
+              : "text-sm hover:font-bold"
+          }
+          onClick={() => handleButtonClick(2020)}
+        >
+          2020
+        </button>
+        {/* Add more buttons for other years as needed */}
+      </div>
       <div className="grid grid-cols-3 gap-16">
         {images.map((image) => (
           <div key={image.id} className="relative">

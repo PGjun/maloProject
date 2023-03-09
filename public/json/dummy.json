@@ -1,10 +1,32 @@
-[
-  { "id": 1, "url": "/img/maloImg1.jpg", "info": "MALO-ART 1" },
-  { "id": 2, "url": "/img/maloImg2.jpg", "info": "MALO-ART 2" },
-  { "id": 3, "url": "/img/maloImg3.jpg", "info": "MALO-ART 3" },
-  { "id": 4, "url": "/img/maloImg4.jpg", "info": "MALO-ART 4" },
-  { "id": 5, "url": "/img/maloImg1.jpg", "info": "MALO-ART 5" },
-  { "id": 6, "url": "/img/maloImg2.jpg", "info": "MALO-ART 6" },
-  { "id": 7, "url": "/img/maloImg3.jpg", "info": "MALO-ART 7" },
-  { "id": 8, "url": "/img/maloImg4.jpg", "info": "MALO-ART 8" }
-]
+{
+  "2018": [
+    { "id": 1, "url": "/img/maloImg1.jpg", "info": "MALO-ART 1" },
+    { "id": 2, "url": "/img/maloImg2.jpg", "info": "MALO-ART 2" },
+    { "id": 3, "url": "/img/maloImg3.jpg", "info": "MALO-ART 3" },
+    { "id": 4, "url": "/img/maloImg4.jpg", "info": "MALO-ART 4" }
+  ],
+  "2019": [
+    { "id": 5, "url": "/img/maloImg1.jpg", "info": "MALO-ART 5" },
+    { "id": 6, "url": "/img/maloImg2.jpg", "info": "MALO-ART 6" },
+    { "id": 7, "url": "/img/maloImg3.jpg", "info": "MALO-ART 7" },
+    { "id": 8, "url": "/img/maloImg4.jpg", "info": "MALO-ART 8" }
+  ],
+  "2020": [
+    { "id": 9, "url": "/img/maloImg1.jpg", "info": "MALO-ART 9" },
+    { "id": 10, "url": "/img/maloImg2.jpg", "info": "MALO-ART 10" },
+    { "id": 11, "url": "/img/maloImg3.jpg", "info": "MALO-ART 11" },
+    { "id": 12, "url": "/img/maloImg4.jpg", "info": "MALO-ART 12" }
+  ],
+  "2021": [
+    { "id": 13, "url": "/img/maloImg1.jpg", "info": "MALO-ART 13" },
+    { "id": 14, "url": "/img/maloImg2.jpg", "info": "MALO-ART 14" },
+    { "id": 15, "url": "/img/maloImg3.jpg", "info": "MALO-ART 15" },
+    { "id": 16, "url": "/img/maloImg4.jpg", "info": "MALO-ART 16" }
+  ],
+  "2022": [
+    { "id": 17, "url": "/img/maloImg1.jpg", "info": "MALO-ART 17" },
+    { "id": 18, "url": "/img/maloImg2.jpg", "info": "MALO-ART 18" },
+    { "id": 19, "url": "/img/maloImg3.jpg", "info": "MALO-ART 19" },
+    { "id": 20, "url": "/img/maloImg4.jpg", "info": "MALO-ART 20" }
+  ]
+}

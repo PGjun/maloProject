@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import titleimg from "../img/maloLogo1.png";
 import footerimg from "../img/maloLogo2.png";
 import Info from "./Info";
 import Contact from "./Contact";
 import Artwork from "./Artwork";
 import tw from "tailwind-styled-components";
-import { useRef } from "react";
 
 const Main = () => {
-  const infoRef = useRef(null);
-  const artworkRef = useRef(null);
-  const contactRef = useRef(null);
+  const infoRef = useRef<HTMLImageElement>(null);
+  const artworkRef = useRef<HTMLImageElement>(null);
+  const contactRef = useRef<HTMLImageElement>(null);
   const headerRef = useRef<HTMLImageElement>(null);
 
-  const scrollToSection = (ref: React.RefObject<HTMLImageElement>) => {
+  const [buttonClicked, setButtonClicked] = useState<string | undefined>("");
+
+  const scrollToSection = (
+    ref: React.RefObject<HTMLImageElement>,
+    buttonname?: string
+  ) => {
     const headerHeight = headerRef.current?.offsetHeight || 0;
     const sectionTop = ref.current?.offsetTop || 0;
 
@@ -21,37 +25,42 @@ const Main = () => {
       top: sectionTop - headerHeight,
       behavior: "smooth",
     });
+
+    setButtonClicked(buttonname);
   };
-  // bg-gradient-to-b from-white via-white
+
   return (
     <>
-      <header
-        ref={headerRef}
-        className="fixed z-10 top-0 left-0 right-0 flex flex-col items-center justify-center  pt-10 pb-10 bg-gradient-to-b from-white via-white to-transparent"
-      >
+      <Header ref={headerRef}>
         <button onClick={() => scrollToSection(headerRef)}>
-          <img src={titleimg} alt="titelimg" ref={headerRef} />
+          <img src={titleimg} alt="titelimg" />
         </button>
         <button
-          className="focus:font-bold text-sm"
-          onClick={() => scrollToSection(infoRef)}
+          onClick={() => scrollToSection(infoRef, "Info")}
+          className={
+            buttonClicked === "Info" ? "text-gray-300" : "hover:font-bold"
+          }
         >
           Info
         </button>
         <button
-          className="focus:font-bold text-sm"
-          onClick={() => scrollToSection(artworkRef)}
+          onClick={() => scrollToSection(artworkRef, "Artwork")}
+          className={
+            buttonClicked === "Artwork" ? "text-gray-300" : "hover:font-bold"
+          }
         >
           Art Work
         </button>
         <button
-          className="focus:font-bold text-sm"
-          onClick={() => scrollToSection(contactRef)}
+          onClick={() => scrollToSection(contactRef, "Contact")}
+          className={
+            buttonClicked === "Contact" ? "text-gray-300" : "hover:font-bold"
+          }
         >
           Contact
         </button>
-      </header>
-      <div className="min-h-screen py-10" />
+      </Header>
+      <Spacer />
 
       <Centerdiv>
         <section className="h-screen" ref={infoRef}>
@@ -65,20 +74,32 @@ const Main = () => {
         </section>
       </Centerdiv>
 
-      <footer className="fixed bottom-0 left-0 right-0 flex justify-center">
-        <div className="flex flex-col items-center mt-20">
+      <Footer>
+        <div className="flex flex-col items-center">
           <img src={footerimg} alt="footerimg" className="w-14" />
           <p className="text-gray-600 text-sm mb-2">
             2022. MALO ALL RIGHTS RESERVED
           </p>
         </div>
-      </footer>
+      </Footer>
     </>
   );
 };
 
 export default Main;
 
+const Header = tw.header`
+fixed z-10 top-0 left-0 right-0 flex flex-col items-center justify-center py-3 bg-white
+`;
+
+const Spacer = tw.div`
+min-h-screen py-10
+`;
+
 const Centerdiv = tw.div`
 flex flex-col items-center justify-center 
+`;
+
+const Footer = tw.div`
+fixed bottom-0 left-0 right-0 flex justify-center
 `;
