@@ -1,10 +1,18 @@
 import React, { useState, useRef } from "react";
+import tw from "tailwind-styled-components";
+
+//img
 import titleimg from "../img/maloLogo1.png";
 import footerimg from "../img/maloLogo2.png";
+
+//page
 import Info from "./Info";
 import Contact from "./Contact";
 import Artwork from "./Artwork";
-import tw from "tailwind-styled-components";
+
+//components
+import LoginModal from "../components/LoginModal";
+import ImgApi from "../components/ImgApi";
 
 const Main = () => {
   const infoRef = useRef<HTMLImageElement>(null);
@@ -13,6 +21,8 @@ const Main = () => {
   const headerRef = useRef<HTMLImageElement>(null);
 
   const [buttonClicked, setButtonClicked] = useState<string | undefined>("");
+
+  const [modalstatus, setModalstatus] = useState<boolean>(false);
 
   const scrollToSection = (
     ref: React.RefObject<HTMLImageElement>,
@@ -59,29 +69,54 @@ const Main = () => {
         >
           Contact
         </button>
+        <ImgApi />
       </Header>
       <Spacer />
 
       <Centerdiv>
-        <section className="h-screen" ref={infoRef}>
+        <section className="min-h-screen" ref={infoRef}>
           <Info />
         </section>
-        <section className="h-screen" ref={artworkRef}>
+        <section className="min-h-screen" ref={artworkRef}>
           <Artwork />
         </section>
-        <section className="h-screen" ref={contactRef}>
+        <section className="min-h-screen" ref={contactRef}>
           <Contact />
         </section>
       </Centerdiv>
 
       <Footer>
         <div className="flex flex-col items-center">
-          <img src={footerimg} alt="footerimg" className="w-14" />
+          <button onClick={() => setModalstatus(true)}>
+            <img src={footerimg} alt="footerimg" className="w-14" />
+          </button>
           <p className="text-gray-600 text-sm mb-2">
             2022. MALO ALL RIGHTS RESERVED
           </p>
         </div>
       </Footer>
+
+      {/* 나중에 리덕스 써서 모달 상태관리 제대로 해보자*/}
+      {modalstatus ? (
+        <>
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-96 bg-white z-30 rounded-md ">
+            <div
+              onClick={() => setModalstatus(false)}
+              className="fixed top-0 right-0 text-4xl text-gray-300 pr-3 cursor-pointer z-40"
+            >
+              ⨯
+            </div>
+            <LoginModal />
+          </div>
+
+          <div
+            onClick={() => setModalstatus(false)}
+            className="fixed top-0 left-0 right-0 bottom-0 h-screen w-full bg-gray-700 opacity-50 z-20"
+          ></div>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -10,6 +10,7 @@ interface Image {
 const Artwork = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [selectedYear, setSelectedYear] = useState<number>(2022);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchImages() {
@@ -17,6 +18,7 @@ const Artwork = () => {
         const response = await axios.get<Image[]>(`json/${selectedYear}.json`);
         setImages(response.data);
         console.log(response.data);
+        setLoading(false);
       }
     }
     fetchImages();
@@ -61,20 +63,23 @@ const Artwork = () => {
         </button>
         {/* Add more buttons for other years as needed */}
       </div>
-      <div className="grid grid-cols-3 gap-16">
-        {images.map((image) => (
-          <div key={image.id} className="relative">
-            <img
-              src={image.url}
-              alt={`Artwork ${image.id}`}
-              className="h-52 w-72 drop-shadow-xl"
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 opacity-0 hover:opacity-100 transition duration-500">
-              <p className="text-black text-center">{image.info}</p>
+
+      {!loading && (
+        <div className="grid grid-cols-3 gap-16 pb-10">
+          {images.map((image) => (
+            <div key={image.id} className="relative">
+              <img
+                src={image.url}
+                alt={`Artwork ${image.id}`}
+                className="h-52 w-72 drop-shadow-xl rounded"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 opacity-0 hover:opacity-100 transition duration-500">
+                <p className="text-black text-center">{image.info}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

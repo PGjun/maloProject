@@ -6,6 +6,9 @@ module.exports = {
       width: {
         500: "500px",
       },
+      height: {
+        700: "700px",
+      },
     },
   },
   plugins: [],
