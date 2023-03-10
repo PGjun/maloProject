@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Artwork from "../page/Artwork";
 
-interface ImageProps {
+export interface ImageProps {
   id: string;
   url: string;
 }
@@ -10,15 +11,16 @@ const ImgApi = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/images")
-      .then((res) => {
-        setImages(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let completed = false;
+    async function get() {
+      const res = await axios.get("http://localhost:3001/images");
+      if (!completed) setImages(res.data);
+      console.log("get.data", res.data);
+    }
+    get();
+    return () => {
+      completed = true;
+    };
   }, []);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +37,8 @@ const ImgApi = () => {
           },
         })
         .then((res) => {
-          setImages((prevImages) => [...prevImages, res.data]);
-          console.log(res.data);
+          // setImages((prevImages) => [...prevImages, res.data]);
+          console.log("post.data", res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -45,16 +47,15 @@ const ImgApi = () => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleImageUpload} />
-      {images.map((image) => (
-        <img
-          key={image.id}
-          src={`http://localhost:3001${image.url}`}
-          alt="uploaded"
-        />
-      ))}
-    </div>
+    <>
+      {/* <div>
+        <input type="file" onChange={handleImageUpload} />
+        {images.map((image) => (
+          <img key={image.id} src={image.url} alt="uploaded" />
+        ))}
+      </div> */}
+      <Artwork data={images} />
+    </>
   );
 };
 

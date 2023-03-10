@@ -1,10 +1,9 @@
 import React from "react";
-import infoimg from "../img/infoImg.png";
 
 const Info = () => {
   return (
     <>
-      <img src={infoimg} alt="정보" className="w-500" />
+      <img src="../img/infoImg.png" alt="정보" className="w-500" />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ImageProps } from "../components/ImgApi";
 
 interface Image {
   id: number;
@@ -7,10 +8,17 @@ interface Image {
   info: string;
 }
 
-const Artwork = () => {
+interface ArtworkProps {
+  data?: ImageProps[];
+}
+
+const Artwork = (props: ArtworkProps) => {
   const [images, setImages] = useState<Image[]>([]);
   const [selectedYear, setSelectedYear] = useState<number>(2022);
   const [loading, setLoading] = useState(true);
+
+  console.log("props.data", props.data);
+  const data = props.data;
 
   useEffect(() => {
     async function fetchImages() {
@@ -78,6 +86,16 @@ const Artwork = () => {
               </div>
             </div>
           ))}
+          {data !== undefined &&
+            data.map((item) => (
+              <div key={item.id}>
+                <img
+                  src={item.url}
+                  alt={`Artwork ${item.id}`}
+                  className="h-52 w-72 drop-shadow-xl rounded"
+                />
+              </div>
+            ))}
         </div>
       )}
     </>

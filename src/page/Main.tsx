@@ -1,10 +1,6 @@
 import React, { useState, useRef } from "react";
 import tw from "tailwind-styled-components";
 
-//img
-import titleimg from "../img/maloLogo1.png";
-import footerimg from "../img/maloLogo2.png";
-
 //page
 import Info from "./Info";
 import Contact from "./Contact";
@@ -43,7 +39,7 @@ const Main = () => {
     <>
       <Header ref={headerRef}>
         <button onClick={() => scrollToSection(headerRef)}>
-          <img src={titleimg} alt="titelimg" />
+          <img src="../img/maloLogo1.png" alt="titelimg" />
         </button>
         <button
           onClick={() => scrollToSection(infoRef, "Info")}
@@ -69,7 +65,6 @@ const Main = () => {
         >
           Contact
         </button>
-        <ImgApi />
       </Header>
       <Spacer />
 
@@ -78,7 +73,7 @@ const Main = () => {
           <Info />
         </section>
         <section className="min-h-screen" ref={artworkRef}>
-          <Artwork />
+          <ImgApi />
         </section>
         <section className="min-h-screen" ref={contactRef}>
           <Contact />
@@ -88,7 +83,7 @@ const Main = () => {
       <Footer>
         <div className="flex flex-col items-center">
           <button onClick={() => setModalstatus(true)}>
-            <img src={footerimg} alt="footerimg" className="w-14" />
+            <img src="../img/maloLogo2.png" alt="footerimg" className="w-14" />
           </button>
           <p className="text-gray-600 text-sm mb-2">
             2022. MALO ALL RIGHTS RESERVED
